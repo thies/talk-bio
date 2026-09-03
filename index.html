@@ -83,6 +83,54 @@
 					</textarea>
 				</section>
 
+				<!-- Backup 1: Opendoor / iBuyers -->
+				<section data-markdown>
+					<textarea data-template>
+						## Many small steps, big disruption<span class="subtitle"><br/>iBuyers: sell your house in 2 days</span>
+
+						<div class='figure'>
+							<img src="imgs/opendoor.png" height=480 />
+						</div>
+
+						Note:
+						AI changes real estate as an investment — fewer frictions, and new risks.
+						- Automatic Valuation Models (Zillow Zestimate, CoreLogic) — near-zero marginal cost valuations enable instant liquidity
+						- iBuyers (Opendoor) — sell your house in 2 days; liquidity through algorithmic instant offers
+						- Competitors: RedfinNow, Zillow Offers, Offerpad
+					</textarea>
+				</section>
+
+				<!-- Backup 2: RealPage -->
+				<section data-markdown data-background-image="imgs/power.jpg" data-background-size="cover">
+					<textarea data-template>
+						## <span class="transparent80" style="padding:0.1em 0.3em;">New powers</span><span class="subtitle"><br/><span class="transparent80" style="padding:0.1em 0.3em;">When algorithms coordinate, not just predict</span></span>
+
+						* <span class="transparent80" style="padding:0.1em 0.3em;">Algorithmic rent-setting software used by large landlords across millions of units</span>
+						* <span class="transparent80" style="padding:0.1em 0.3em;">2024: accused of enabling coordinated price-setting rather than independent competition</span>
+						* <span class="transparent80" style="padding:0.1em 0.3em;">DOJ antitrust investigation and lawsuit followed</span>
+						* <span class="transparent80" style="padding:0.1em 0.3em;">Raises a distinct question from valuation accuracy: can shared algorithms function as a cartel, even without explicit collusion?</span>
+					</textarea>
+				</section>
+
+				<!-- Backup 3: Moving up the value chain -->
+				<section>
+					<h2>Which skills does my team need?<span class="subtitle"><br/>Am I still useful? Does a human competitive edge remain?</span></h2>
+					<p style="text-align:center; font-size:0.75em; color:#555; margin:0 0 0.2em;">Comparison of Core Competencies in Research Team (my self-perception)</p>
+					<div style="display:flex; justify-content:center; align-items:center; height:490px;">
+						<canvas id="radar-chart" style="max-width:620px; max-height:490px;"></canvas>
+					</div>
+				</section>
+
+				<!-- Backup 4: Living.pub -->
+				<section data-background-image="imgs/outdated.svg" data-background-size="contain" data-background-position="right">
+					<h2><span class="transparent80" style="padding:0.1em 0.3em;">Living.pub</span><span class="subtitle"><br/><span class="transparent80" style="padding:0.1em 0.3em;">Automated updates of research reports, papers and insights</span></span></h2>
+					<ul class="transparent80" style="max-width:55%; padding:0.4em 0.8em; list-style-position:inside;">
+						<li>Automation saves money and increases validity</li>
+						<li>Re-run analysis, check for changes in the findings, keep everything fresh</li>
+						<li>AI is excellent at this!</li>
+					</ul>
+				</section>
+
 			</div>
 		</div>
 
@@ -91,6 +139,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 		<script>
 			Reveal.initialize({
 				transition: "none",
@@ -100,6 +149,70 @@
 				hash: true,
 				math: { mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js' },
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+			});
+
+			Reveal.on('ready', function() {
+				const ctx = document.getElementById('radar-chart');
+				if (!ctx) return;
+				new Chart(ctx, {
+					type: 'radar',
+					data: {
+						labels: [
+							'Literature',
+							'Theory',
+							'Empirics',
+							'Getting Things Done',
+							'Quality Control',
+							'Innovation'
+						],
+						datasets: [
+							{
+								label: 'AI',
+								data: [9, 8, 9, 8, 4, 4],
+								backgroundColor: 'rgba(59, 154, 178, 0.2)',
+								borderColor: '#3B9AB2',
+								borderWidth: 2.5,
+								pointBackgroundColor: '#3B9AB2',
+								pointRadius: 4,
+							},
+							{
+								label: 'Thies',
+								data: [6, 7, 7, 6, 9, 9],
+								backgroundColor: 'rgba(242, 26, 0, 0.15)',
+								borderColor: '#F21A00',
+								borderWidth: 2.5,
+								pointBackgroundColor: '#F21A00',
+								pointRadius: 4,
+							}
+						]
+					},
+					options: {
+						responsive: true,
+						maintainAspectRatio: true,
+						scales: {
+							r: {
+								min: 0,
+								max: 10,
+								ticks: {
+									stepSize: 2,
+									font: { size: 13 },
+									backdropColor: 'transparent',
+								},
+								pointLabels: {
+									font: { size: 16 },
+								},
+								grid: { color: '#ddd' },
+								angleLines: { color: '#ddd' },
+							}
+						},
+						plugins: {
+							legend: {
+								position: 'bottom',
+								labels: { font: { size: 15 }, boxWidth: 18 }
+							}
+						}
+					}
+				});
 			});
 		</script>
 	</body>
